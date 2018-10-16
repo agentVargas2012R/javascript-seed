@@ -5,22 +5,23 @@
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
     "start": "npm-run-all --parallel startAll lint:watch test:watch",
-    "startAll" : "npm-run-all bs express",    
+    "startAll": "npm-run-all bs express",
     "express": "babel-node buildScripts/srcServer.js",
-    "bsServer": "node buildScripts/browserSynchServer.js", 
-    "lint" : "esw webpack.config.* src buildScripts --color",   
-    "lint:watch" : "npm run lint -- --watch",   
+    "bsServer": "node buildScripts/browserSynchServer.js",
+    "lint": "esw webpack.config.* src buildScripts --color",
+    "lint:watch": "npm run lint -- --watch",
     "localtunnel": "lt --port 3000",
     "ngServer": "ngrok http 3000",
     "share": "npm-run-all --parallel bs ngServer express",
     "bs": "browser-sync start -- --server --files '**/*' --config 'buildScripts/bs-config.js'",
-    "test" : "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
-    "test:watch" : "npm run test -- --watch"
+    "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
+    "test:watch": "npm run test -- --watch"
   },
   "author": "Cory House",
   "license": "MIT",
   "dependencies": {
     "browser-sync": "^2.24.7",
+    "browser-sync-webpack-plugin": "^2.2.2",
     "lodash": "^4.17.11",
     "ngrok": "^3.1.0",
     "whatwg-fetch": "1.0.0"
