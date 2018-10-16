@@ -6,6 +6,15 @@
     <title>Hello World!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
+    <!-- MAKE SURE TO DISABLE YOUR CORS CHROME PLUGIN OR IT WILL BREAK THIS CONFIGURATION!!! 
+        DO NOT FUCKING FORGET ABOUT THIS SHIT.
+     <meta http-equiv="Content-Security-Policy"
+      content="
+        script-src 'self' 'unsafe-inline' http://localhost:3000/browser-sync/browser-sync-client.js">
+    
+    -->
+    
+
 </head>
 <body>
     
@@ -23,9 +32,11 @@
         </tbody>
     </table>
     
+    <input type="text" value="test">
+
     <script id="__bs_script__">//<![CDATA[
-        document.write("<script async src='http://HOST:3001/browser-sync/browser-sync-client.js?v=2.24.7'><\/script>".replace("HOST", location.hostname));
-    //]]></script>
+        document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.24.7'><\/script>".replace("HOST", location.hostname));
+    </script>        
     <script src="bundle.js" type="text/javascript"></script>
 </body>
 </html>

@@ -4,10 +4,8 @@
   "description": "JavaScript Development Seed Template",
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --parallel startAll lint:watch test:watch",
-    "startAll": "npm-run-all bs express",
-    "express": "babel-node buildScripts/srcServer.js",
-    "bsServer": "node buildScripts/browserSynchServer.js",
+    "start": "npm-run-all --parallel express lint:watch test:watch bs",    
+    "express": "babel-node buildScripts/srcServer.js",    
     "lint": "esw webpack.config.* src buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
     "localtunnel": "lt --port 3000",
@@ -22,6 +20,7 @@
   "dependencies": {
     "browser-sync": "^2.24.7",
     "browser-sync-webpack-plugin": "^2.2.2",
+    "connect-browser-sync": "^2.1.0",
     "lodash": "^4.17.11",
     "ngrok": "^3.1.0",
     "whatwg-fetch": "1.0.0"

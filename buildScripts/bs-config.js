@@ -15,17 +15,10 @@
 module.exports = {    
     "files": "**/*",    
     "watch": true,        
-    "proxy": "localhost:3000",
-    "port": 3000,    
-    "ghostMode": {
-        "clicks": true,
-        "scroll": true,
-        "location": true,
-        "forms": {
-            "submit": true,
-            "inputs": true,
-            "toggles": true
-        }
-    },    
+    "proxy": {
+        target: "http://localhost:3005",
+    },
+    "cors": false,        
+    "port": 3000,            
     "browser": "google chrome",            
 };
