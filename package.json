@@ -4,7 +4,7 @@
   "description": "JavaScript Development Seed Template",
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --parallel express lint:watch test:watch bs",    
+    "start": "npm-run-all --parallel express lint:watch test:watch bs start-mockapi",    
     "express": "babel-node buildScripts/srcServer.js",    
     "lint": "esw webpack.config.* src buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
@@ -13,7 +13,10 @@
     "share": "npm-run-all --parallel bs ngServer express",
     "bs": "browser-sync start -- --server --files '**/*' --config 'buildScripts/bs-config.js'",
     "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "generate-mock-data" : "babel-node buildScripts/generateMockData",
+    "prestart-mockapi" : "npm run generate-mock-data",
+    "start-mockapi" : "json-server --watch src/api/db.json --port 3010"    
   },
   "author": "Cory House",
   "license": "MIT",
