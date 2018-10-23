@@ -1,22 +1,15 @@
 import express from 'express';
 import path from 'path';
 import open from 'open';
-import webpack from 'webpack';
-import config from '../webpack.config.dev';
 import cors from 'cors';
+import compression from 'compression';
 
 const port = 3005;
 const app = express();
+
 app.use(cors());
-
-const compiler = webpack(config);
-
-/* eslint-disable no-unused-vars*/
-/* eslint-disable no-undef*/
-app.use(require('webpack-dev-middleware')(compiler, {
-    noInfo: true,
-    publicPath: config.output.publicPath
-}));
+app.use(compression());
+app.use(express.static('dist'));
 
 
 app.use(function(req, res, next) {    
@@ -38,17 +31,22 @@ app.use(function(req, res, next) {
 });
 
 /* eslint-disable no-console*/
-app.get('/', function(req, res){                   
-    res.sendFile(path.join(__dirname, '../src/index.html'));   
+app.get('/', function(req, res){               
+    res.sendFile(path.join(__dirname, '../dist/index.html'));   
 });
 
 app.get('/users', function(req, res){
 
-    res.json([
-        {"id" : 1, "firstName" : "bob", "lastName" : "Smith", "email" : "bob@gmail.com"},
-        {"id" : 2, "firstName" : "Tammy", "lastName" : "Smith", "email" : "bob@gmail.com"},
-        {"id" : 3, "firstName" : "Tina", "lastName" : "Smith", "email" : "bob@gmail.com"},
-    ]);
+    console.log("Query: " + req.query);
+    if(req.query.useMockApi){
+        res.json([
+            {"id" : 1, "firstName" : "bob", "lastName" : "Smith", "email" : "bob@gmail.com"},
+            {"id" : 2, "firstName" : "Tammy", "lastName" : "Smith", "email" : "bob@gmail.com"},
+            {"id" : 3, "firstName" : "Tina", "lastName" : "Smith", "email" : "bob@gmail.com"},
+        ]);
+    }else{
+        console.log("RETURNING REAL API>>>>>>>>>");
+    }
 });
 
 app.listen(port, function(err){

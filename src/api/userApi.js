@@ -12,6 +12,8 @@ export function deleteUser(id){
 }
 
 function get(url){
+    /*eslint-disable no-console*/
+    console.log("Calling..." + baseUrl + url);
     return fetch(baseUrl + url).then(onSuccess, onError);
 }
 
